@@ -1,0 +1,34 @@
+{
+  "date": "1-March-24",
+  "settings": {
+    "step1_Max Lambda":4,
+    "step2_Max Lambda":7,
+    "step3_Max Lambda":3,
+    "step4_Max Lambda":5
+  },
+  "todays_counts": {
+    "new_brands_ingested": 3,
+    "brands_updated": 740,
+    "brands_fully_analyzed": 1,
+    "images_processed": 323,
+    "images_analyzed": 123,
+    "videos_processed": 200,
+    "videos_analyzed": 133,
+    "other_assets_processed": 111,
+    "step1_total_time": 2372.38234,
+    "step2_total_time": 3292.29222,
+    "step3_total_time": 4123.45895,
+    "step4_total_time": 3489.38477,
+    "total_ingestion_time": 12983.82923
+  },
+  "grand_totals": {
+    "total_brands": 740,
+    "brands_fully_analyzed": 702,
+    "total_images": 10431,
+    "images_analyzed": 8302,
+    "total_videos": 8112,
+    "videos_analyzed": 7123,
+    "total_other_assets": 142,
+    "other_assets_analyzed": 123
+  }
+}

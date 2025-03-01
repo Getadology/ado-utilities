@@ -6,10 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXFileReference section */
+		88726B082D734EF900CA62BD /* dailies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = dailies.md; sourceTree = "<group>"; };
+		88726B092D734EF900CA62BD /* jsonSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jsonSample.json; sourceTree = "<group>"; };
+		88726B0A2D734EF900CA62BD /* dyanmicpage.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = dyanmicpage.html; sourceTree = "<group>"; };
+		88726B0B2D734EF900CA62BD /* apisrv.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = apisrv.py; sourceTree = "<group>"; };
+		88726B0C2D734EF900CA62BD /* counterdump.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = counterdump.py; sourceTree = "<group>"; };
+		88726B0D2D734F1700CA62BD /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		88726B0E2D73510C00CA62BD /* sqsdump.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sqsdump.py; sourceTree = "<group>"; };
+		88726B0F2D73517B00CA62BD /* lambdadump.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = lambdadump.py; sourceTree = "<group>"; };
+		88726B102D7351CD00CA62BD /* logdumper.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = logdumper.py; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		88726B012D734EE300CA62BD = {
 			isa = PBXGroup;
 			children = (
+				88726B0D2D734F1700CA62BD /* readme.md */,
+				88726B0E2D73510C00CA62BD /* sqsdump.py */,
+				88726B0F2D73517B00CA62BD /* lambdadump.py */,
+				88726B102D7351CD00CA62BD /* logdumper.py */,
+				88726B082D734EF900CA62BD /* dailies.md */,
+				88726B092D734EF900CA62BD /* jsonSample.json */,
+				88726B0A2D734EF900CA62BD /* dyanmicpage.html */,
+				88726B0B2D734EF900CA62BD /* apisrv.py */,
+				88726B0C2D734EF900CA62BD /* counterdump.py */,
 			);
 			sourceTree = "<group>";
 		};

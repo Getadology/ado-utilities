@@ -1,0 +1,128 @@
+<!--
+Below is a complete HTML file that uses JavaScript to poll an API endpoint (assumed to be /api/todaysreport) every minute to retrieve today’s report from your database and update the page accordingly.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Today's Report Monitor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .report-section {
+      margin-bottom: 20px;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      padding: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Today's Report Monitor</h1>
+  <div id="report">
+    <!-- Report data will appear here -->
+  </div>
+
+  <script>
+    // Function to fetch today's report from the API endpoint
+    async function fetchReport() {
+      try {
+        // Replace '/api/todaysreport' with the correct endpoint for your backend.
+        const response = await fetch('/api/todaysreport');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const report = await response.json();
+        updateReportHTML(report);
+      } catch (error) {
+        console.error('Error fetching report:', error);
+        document.getElementById('report').innerHTML = '<p>Error fetching report data.</p>';
+      }
+    }
+
+    // Function to update the HTML content with the report data
+    function updateReportHTML(report) {
+      let html = `<h2>Date: ${report.date}</h2>`;
+
+      // Settings Section
+      html += `<div class="report-section">
+                <h3>Settings</h3>
+                <ul>
+                  <li><strong>Step1 - Max Lambda:</strong> ${report.settings["step1_Max Lambda"]}</li>
+                  <li><strong>Step2 - Max Lambda:</strong> ${report.settings["step2_Max Lambda"]}</li>
+                  <li><strong>Step3 - Max Lambda:</strong> ${report.settings["step3_Max Lambda"]}</li>
+                  <li><strong>Step4 - Max Lambda:</strong> ${report.settings["step4_Max Lambda"]}</li>
+                </ul>
+              </div>`;
+
+      // Today's Counts Section
+      const tc = report.todays_counts;
+      html += `<div class="report-section">
+                <h3>Today's Counts</h3>
+                <ul>
+                  <li><strong>New Brands Ingested:</strong> ${tc.new_brands_ingested}</li>
+                  <li><strong>Brands Updated:</strong> ${tc.brands_updated}</li>
+                  <li><strong>Brands Fully Analyzed:</strong> ${tc.brands_fully_analyzed}</li>
+                  <li><strong>Images Processed:</strong> ${tc.images_processed}</li>
+                  <li><strong>Images Analyzed:</strong> ${tc.images_analyzed}</li>
+                  <li><strong>Videos Processed:</strong> ${tc.videos_processed}</li>
+                  <li><strong>Videos Analyzed:</strong> ${tc.videos_analyzed}</li>
+                  <li><strong>Other Assets Processed:</strong> ${tc.other_assets_processed}</li>
+                  <li><strong>Step1 Total Time:</strong> ${tc.step1_total_time} seconds</li>
+                  <li><strong>Step2 Total Time:</strong> ${tc.step2_total_time} seconds</li>
+                  <li><strong>Step3 Total Time:</strong> ${tc.step3_total_time} seconds</li>
+                  <li><strong>Step4 Total Time:</strong> ${tc.step4_total_time} seconds</li>
+                  <li><strong>Total Ingestion Time:</strong> ${tc.total_ingestion_time} seconds</li>
+                </ul>
+              </div>`;
+
+      // Grand Totals Section
+      const gt = report.grand_totals;
+      html += `<div class="report-section">
+                <h3>Grand Totals in Adology Database</h3>
+                <ul>
+                  <li><strong>Total Brands:</strong> ${gt.total_brands}</li>
+                  <li><strong>Brands Fully Analyzed:</strong> ${gt.brands_fully_analyzed}</li>
+                  <li><strong>Total Images:</strong> ${gt.total_images}</li>
+                  <li><strong>Images Analyzed:</strong> ${gt.images_analyzed}</li>
+                  <li><strong>Total Videos:</strong> ${gt.total_videos}</li>
+                  <li><strong>Videos Analyzed:</strong> ${gt.videos_analyzed}</li>
+                  <li><strong>Total Other Assets:</strong> ${gt.total_other_assets}</li>
+                  <li><strong>Other Assets Analyzed:</strong> ${gt.other_assets_analyzed}</li>
+                </ul>
+              </div>`;
+
+      document.getElementById('report').innerHTML = html;
+    }
+
+    // Update the report every minute (60000 ms)
+    setInterval(fetchReport, 60000);
+
+    // Initial fetch when the page loads
+    fetchReport();
+  </script>
+</body>
+</html>
+<!--
+How It Works
+	1.	API Call:
+The script uses the fetch API to request today’s report from /api/todaysreport. (Be sure to update this endpoint based on your backend configuration.)
+	2.	HTML Update:
+Once the data is received, the updateReportHTML function builds HTML content from the JSON object and injects it into the #report element.
+	3.	Auto-Refresh:
+The setInterval call triggers the fetchReport function every 60,000 milliseconds (once a minute), ensuring the page stays updated with the latest data.
+	4.	Styling:
+Basic CSS styles ensure the content is readable and structured.
+
+Simply serve this HTML file from your web server, ensure your API endpoint is working, and you’ll have a live dashboard that updates every minute with today’s report data from the database.
+-->
