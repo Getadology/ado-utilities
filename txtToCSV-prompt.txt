@@ -1,0 +1,12 @@
+from the text data about ads that follows  	Extract relevant data from each ad’s text:
+	•	brand: e.g., “Vans,” “REAL Skateboards,” or “unknown.”
+	•	productType: e.g., “sneakers,” “hoodie,” “backpack,” “winter boots.”
+  - color: e.g. "red"
+	•	environment: e.g., “urban,” “skate,” “snow,” “outdoor,” “everyday.”
+	•	features: e.g., “water-resistant,” “checkerboard print,” “Valentine’s Day,” “rugged sole.”
+	•	marketingApproach: e.g., “FOMO,” “nostalgia,” “emotional appeal,” “lifestyle.”
+	•	startDate.
+	•	description.
+ 
+ write this data to a csv file with the header:
+ adId,startDate,brand,productType,color,environment,features,marketingApproach,description

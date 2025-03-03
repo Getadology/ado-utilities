@@ -16,6 +16,16 @@
 		88726B0E2D73510C00CA62BD /* sqsdump.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = sqsdump.py; sourceTree = "<group>"; };
 		88726B0F2D73517B00CA62BD /* lambdadump.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = lambdadump.py; sourceTree = "<group>"; };
 		88726B102D7351CD00CA62BD /* logdumper.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = logdumper.py; sourceTree = "<group>"; };
+		88726B112D750A9200CA62BD /* vans.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = vans.csv; sourceTree = "<group>"; };
+		88726B122D75329C00CA62BD /* birkenstock.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = birkenstock.csv; sourceTree = "<group>"; };
+		88726B132D7532FC00CA62BD /* ads_data.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = ads_data.csv; sourceTree = "<group>"; };
+		88726B142D753AB500CA62BD /* txtToCSV-prompt.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "txtToCSV-prompt.txt"; sourceTree = "<group>"; };
+		88726B152D753C9B00CA62BD /* birkenstockfull-ads.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "birkenstockfull-ads.csv"; sourceTree = "<group>"; };
+		88726B162D753E5200CA62BD /* croc-ads.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "croc-ads.csv"; sourceTree = "<group>"; };
+		88726B172D753FE300CA62BD /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
+		88726B182D75422B00CA62BD /* hoya-ads.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "hoya-ads.csv"; sourceTree = "<group>"; };
+		88726B192D7543CE00CA62BD /* ugg-ads.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ugg-ads.csv"; sourceTree = "<group>"; };
+		88726B1A2D75472300CA62BD /* skecher-ads.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "skecher-ads.csv"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -23,6 +33,16 @@
 			isa = PBXGroup;
 			children = (
 				88726B0D2D734F1700CA62BD /* readme.md */,
+				88726B112D750A9200CA62BD /* vans.csv */,
+				88726B122D75329C00CA62BD /* birkenstock.csv */,
+				88726B162D753E5200CA62BD /* croc-ads.csv */,
+				88726B172D753FE300CA62BD /* File.txt */,
+				88726B142D753AB500CA62BD /* txtToCSV-prompt.txt */,
+				88726B152D753C9B00CA62BD /* birkenstockfull-ads.csv */,
+				88726B182D75422B00CA62BD /* hoya-ads.csv */,
+				88726B192D7543CE00CA62BD /* ugg-ads.csv */,
+				88726B1A2D75472300CA62BD /* skecher-ads.csv */,
+				88726B132D7532FC00CA62BD /* ads_data.csv */,
 				88726B0E2D73510C00CA62BD /* sqsdump.py */,
 				88726B0F2D73517B00CA62BD /* lambdadump.py */,
 				88726B102D7351CD00CA62BD /* logdumper.py */,
