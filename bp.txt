@@ -1,0 +1,19 @@
+
+We are building a Python based system at Amazon, and I am here ruminating about an efficient means of Acquiring remote content from a variety of advertising sources, mostly images and video. They will be subjected to slicing , dicing, and analysis by a variety of remote AI. There will be embeddings extacted and stored efficiently in a FAISS vector database.
+
+
+We begin with a list of URLS associated with an (advertising) Brand. They are coming via a file specified in command line or via an SQS message. Either way they call a function to handle a list of urls that begins by downloading each of the urls and uploading to S3 as a separate asyncio python task and then proceeding to do a lot of external AI calls that heavily I/O bound. But the fanout to multiple tasks must be controlled to a reasonable but flexible level.
+
+The way I think about this AI processing is that there’s something that’s gotta be done for each video or image and then later there’s something that’s gotta be done for the full set of results that come back from the first round of processing And then there can be more cycles like this if it’s necessary, but that we don’t have to touch the images and videos again after we store them in S3 we can get there and we can get there in beddings if we want to and add them to the data
+
+more optimizations from this> As long as we’re computing the embedding off board at Amazon or some other AI they are just another AI cycle with more data being added to the pile that we’re collecting for this particular ad image or video it says the third data is a little different
+
+ I am really thinking about having a flat temporary file open for each URL that is being analyzed and the analysis is just appended to to the file as it passed between different AI steps and then finally when it’s all done it’s written properly up to S3 itself. Then we gather all the temporary files for the brand and we write them to the database in one beautiful transaction, into Postgres or some other appropriate DB, super efficiently, and that’s the end of the story
+
+The other thing I’m thinking about is some kind of standard interface between the AI routines from F and W and the code that will be calling it in the pipeline detailed above.
+
+F and W's code should become a library of different AI methods that hide all the details of prompting and such
+
+Every AI method  basically takes a block of data or two and returns a bunch of results from the AI. They can be plugged into the pipeline at appropriate points. The pipeline is explicit, with conditionals and additional concurrency exploited heavily. The pipeline all runs in a single asycio task, which makes it super efficient.
+
+There should be a testing harness that the rest of us can use which allows us to test the AI methods by themselves

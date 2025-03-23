@@ -1,10 +1,8 @@
 #
-//  sqsdump.py
-//  ado-utilities
-//
-//  Created by bill donner on 3/1/25.
-//
 """
+//  sqsdump.py
+//
+
 To build a Python utility for listing SQS queues along with their attributes, you can use the boto3 library, which is the AWS SDK for Python. This utility will fetch the list of queues and their details, including their message counts. Here’s a basic implementation:
 """
 import boto3

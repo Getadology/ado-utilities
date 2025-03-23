@@ -1,0 +1,117 @@
+The provided code snippet is a part of an AWS Lambda function that processes SQS messages, downloads videos, uploads them to S3, and updates MongoDB collections. Here's a summary of its functionality:
+
+### Summary
+
+1. **Imports and Initializations**:
+   - Imports necessary libraries for asynchronous operations (
+
+asyncio
+
+,
+
+aiohttp
+
+,
+
+aiobotocore
+
+), MongoDB interactions (
+
+pymongo
+
+), AWS services (
+
+boto3
+
+), and other utilities.
+   - Initializes MongoDB client and connects to the `topadology_db` database.
+   - Initializes AWS S3, SNS, and SQS clients.
+   - Retrieves configuration values from environment variables.
+
+2. **Asynchronous Download and Upload**:
+   ```python
+   async def download_and_upload(session, s3_client, video):
+       # Downloads video using streaming and uploads it to S3.
+   ```
+
+   - Downloads video content using streaming and uploads it to S3.
+   - Uses
+
+aiohttp
+
+ for HTTP requests and
+
+aiobotocore
+
+ for S3 operations.
+
+3. **Processing Files Concurrently**:
+   ```python
+   async def process_files(files_data):
+       # Processes all files concurrently
+   ```
+
+   - Processes multiple files concurrently by creating tasks for each file download and upload.
+
+4. **Notify User**:
+   ```python
+   def notify_user(data, user_id):
+       # Notifies the user via a socket connection
+   ```
+
+   - Sends a notification to the user via a socket connection using the
+
+requests
+
+ library.
+
+5. **Process Message**:
+   ```python
+   def process_message(message, receipt_handle):
+       # Processes the SQS message
+   ```
+
+   - Extracts relevant data from the SQS message.
+   - Calls
+
+process_files
+
+ to download and upload files.
+   - Returns a success or error response based on the outcome.
+
+6. **Lambda Handler Function**:
+   ```python
+   def lambda_handler(event, context):
+       # Main entry point for the Lambda function
+   ```
+
+   - Processes each record in the SQS event.
+   - Calls
+
+process_message
+
+ for each message.
+   - Inserts batch information into the
+
+batches
+
+ collection in MongoDB.
+   - Updates the
+
+brand_states
+
+ and
+
+master_ads_meta
+
+ collections based on the processing results.
+   - Notifies the user if all batches are processed successfully.
+
+### Key Points
+
+- **Asynchronous Operations**: The code uses asynchronous operations to download and upload videos concurrently, improving efficiency.
+- **AWS Services**: Utilizes AWS S3 for storage, SQS for message handling, and SNS for notifications.
+- **MongoDB**: Interacts with MongoDB to store and update batch processing information.
+- **User Notification**: Notifies users about the processing status via a socket connection.
+
+This function is part of a larger system that processes advertisement data, downloads videos, uploads them to S3, and updates the processing status in MongoDB.
