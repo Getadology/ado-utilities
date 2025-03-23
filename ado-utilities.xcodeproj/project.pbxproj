@@ -40,6 +40,7 @@
 		88726B272D9051C100CA62BD /* logging-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "logging-discussion.md"; sourceTree = "<group>"; };
 		88726B282D90532300CA62BD /* container-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "container-discussion.md"; sourceTree = "<group>"; };
 		88726B292D9055EF00CA62BD /* dev-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "dev-discussion.md"; sourceTree = "<group>"; };
+		88726B2B2D908E0C00CA62BD /* aws-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "aws-discussion.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -47,12 +48,8 @@
 			isa = PBXGroup;
 			children = (
 				88726B0D2D734F1700CA62BD /* readme.md */,
-				88726B112D750A9200CA62BD /* vans.csv */,
-				88726B122D75329C00CA62BD /* birkenstock.csv */,
-				88726B1B2D75484F00CA62BD /* New Group */,
 				88726B172D753FE300CA62BD /* File.txt */,
 				88726B142D753AB500CA62BD /* txtToCSV-prompt.txt */,
-				88726B132D7532FC00CA62BD /* ads_data.csv */,
 				88726B0E2D73510C00CA62BD /* sqsdump.py */,
 				88726B1C2D7912C000CA62BD /* dolater.md */,
 				88726B1D2D7A714200CA62BD /* CodeReview.txt */,
@@ -62,10 +59,8 @@
 				88726B232D8A738300CA62BD /* claude.py */,
 				88726B242D8A75A800CA62BD /* claude35.py */,
 				88726B252D8C3A3800CA62BD /* foobar.md */,
-				88726B262D90502400CA62BD /* ops-discussion.md */,
-				88726B292D9055EF00CA62BD /* dev-discussion.md */,
-				88726B272D9051C100CA62BD /* logging-discussion.md */,
-				88726B282D90532300CA62BD /* container-discussion.md */,
+				88726B2C2D908F2500CA62BD /* discussions */,
+				88726B1B2D75484F00CA62BD /* ads data */,
 				88726B1E2D7B412D00CA62BD /* sqslambdareview.md */,
 				88726B1F2D7D0CB500CA62BD /* OpsManual.md */,
 				88726B0F2D73517B00CA62BD /* lambdadump.py */,
@@ -78,16 +73,31 @@
 			);
 			sourceTree = "<group>";
 		};
-		88726B1B2D75484F00CA62BD /* New Group */ = {
+		88726B1B2D75484F00CA62BD /* ads data */ = {
 			isa = PBXGroup;
 			children = (
+				88726B112D750A9200CA62BD /* vans.csv */,
+				88726B122D75329C00CA62BD /* birkenstock.csv */,
 				88726B162D753E5200CA62BD /* croc-ads.csv */,
 				88726B152D753C9B00CA62BD /* birkenstock-ads.csv */,
 				88726B182D75422B00CA62BD /* hoya-ads.csv */,
+				88726B132D7532FC00CA62BD /* ads_data.csv */,
 				88726B192D7543CE00CA62BD /* ugg-ads.csv */,
 				88726B1A2D75472300CA62BD /* skecher-ads.csv */,
 			);
-			path = "New Group";
+			path = "ads data";
+			sourceTree = "<group>";
+		};
+		88726B2C2D908F2500CA62BD /* discussions */ = {
+			isa = PBXGroup;
+			children = (
+				88726B262D90502400CA62BD /* ops-discussion.md */,
+				88726B292D9055EF00CA62BD /* dev-discussion.md */,
+				88726B2B2D908E0C00CA62BD /* aws-discussion.md */,
+				88726B272D9051C100CA62BD /* logging-discussion.md */,
+				88726B282D90532300CA62BD /* container-discussion.md */,
+			);
+			path = discussions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
