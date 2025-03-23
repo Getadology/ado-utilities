@@ -41,6 +41,7 @@
 		88726B282D90532300CA62BD /* container-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "container-discussion.md"; sourceTree = "<group>"; };
 		88726B292D9055EF00CA62BD /* dev-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "dev-discussion.md"; sourceTree = "<group>"; };
 		88726B2B2D908E0C00CA62BD /* aws-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "aws-discussion.md"; sourceTree = "<group>"; };
+		88726B2D2D90926000CA62BD /* workflow-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "workflow-discussion.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -95,6 +96,7 @@
 				88726B292D9055EF00CA62BD /* dev-discussion.md */,
 				88726B2B2D908E0C00CA62BD /* aws-discussion.md */,
 				88726B272D9051C100CA62BD /* logging-discussion.md */,
+				88726B2D2D90926000CA62BD /* workflow-discussion.md */,
 				88726B282D90532300CA62BD /* container-discussion.md */,
 			);
 			path = discussions;

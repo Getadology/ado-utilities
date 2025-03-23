@@ -188,6 +188,8 @@ This section provides a **step-by-step walkthrough** of the architecture, descri
 | **8** | Frontend **receives real-time updates** via WebSockets. |
 
 ---
+
+
 ##   **Shared Managed Resources Overview**
 
 The **shared managed resources** are foundational components that provide **reliable, scalable, and efficient** data storage, processing, and monitoring for the entire system. These services reduce operational overhead while ensuring security, availability, and performance.
