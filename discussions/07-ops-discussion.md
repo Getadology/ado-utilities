@@ -1,4 +1,4 @@
-# Ops Dashboard Discussion
+# Ops Dashboard
 
 Q:I want to build some monitoring screens on top of an AWS infrastructure. This will include looking at Q counts on SQSQ’s looking at error, messages in console, logs and generating alerts for people on their mobile phones when any of this goes astray please make some suggestions for delivering all this information into a dashboard like situation for an operational user. It’s OK if some of this ends up on terminal screens without a gui
 
@@ -76,4 +76,4 @@ Alerts	CW Alarm + SNS → Slack/SMS/Firebase	Mobile Notification
 	•	Use AWS Lambda to regularly push state summaries to a central place (e.g., DynamoDB + terminal polling, or a Redis pub-sub feed)
 	•	Implement “heartbeat” tracking for critical services and raise alerts if no heartbeat received
 
-Would you prefer to go more terminal-focused, or are you looking to eventually have a proper web-based dashboard too? I can mock up a terminal UI or web dashboard sample for you if you like.
+---

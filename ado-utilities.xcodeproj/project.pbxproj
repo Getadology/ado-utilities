@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		886BB40E2D90C4DD004E64B6 /* 06-brandregistry-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "06-brandregistry-discussion.md"; sourceTree = "<group>"; };
+		886BB40F2D90C967004E64B6 /* 05-pipeline-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "05-pipeline-discussion.md"; sourceTree = "<group>"; };
+		886BB4102D90D041004E64B6 /* 00-toc-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "00-toc-discussion.md"; sourceTree = "<group>"; };
+		886BB4112D90D2AE004E64B6 /* combined.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = combined.md; sourceTree = "<group>"; };
 		88726B082D734EF900CA62BD /* dailies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = dailies.md; sourceTree = "<group>"; };
 		88726B092D734EF900CA62BD /* jsonSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jsonSample.json; sourceTree = "<group>"; };
 		88726B0A2D734EF900CA62BD /* dyanmicpage.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = dyanmicpage.html; sourceTree = "<group>"; };
@@ -36,12 +40,12 @@
 		88726B232D8A738300CA62BD /* claude.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = claude.py; sourceTree = "<group>"; };
 		88726B242D8A75A800CA62BD /* claude35.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = claude35.py; sourceTree = "<group>"; };
 		88726B252D8C3A3800CA62BD /* foobar.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = foobar.md; sourceTree = "<group>"; };
-		88726B262D90502400CA62BD /* ops-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ops-discussion.md"; sourceTree = "<group>"; };
-		88726B272D9051C100CA62BD /* logging-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "logging-discussion.md"; sourceTree = "<group>"; };
-		88726B282D90532300CA62BD /* container-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "container-discussion.md"; sourceTree = "<group>"; };
-		88726B292D9055EF00CA62BD /* dev-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "dev-discussion.md"; sourceTree = "<group>"; };
-		88726B2B2D908E0C00CA62BD /* aws-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "aws-discussion.md"; sourceTree = "<group>"; };
-		88726B2D2D90926000CA62BD /* workflow-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "workflow-discussion.md"; sourceTree = "<group>"; };
+		88726B262D90502400CA62BD /* 07-ops-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "07-ops-discussion.md"; sourceTree = "<group>"; };
+		88726B272D9051C100CA62BD /* 03-logging-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "03-logging-discussion.md"; sourceTree = "<group>"; };
+		88726B282D90532300CA62BD /* 08-container-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "08-container-discussion.md"; sourceTree = "<group>"; };
+		88726B292D9055EF00CA62BD /* 10-dev-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "10-dev-discussion.md"; sourceTree = "<group>"; };
+		88726B2B2D908E0C00CA62BD /* 01-aws-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "01-aws-discussion.md"; sourceTree = "<group>"; };
+		88726B2D2D90926000CA62BD /* 02-workflow-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "02-workflow-discussion.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -92,12 +96,16 @@
 		88726B2C2D908F2500CA62BD /* discussions */ = {
 			isa = PBXGroup;
 			children = (
-				88726B262D90502400CA62BD /* ops-discussion.md */,
-				88726B292D9055EF00CA62BD /* dev-discussion.md */,
-				88726B2B2D908E0C00CA62BD /* aws-discussion.md */,
-				88726B272D9051C100CA62BD /* logging-discussion.md */,
-				88726B2D2D90926000CA62BD /* workflow-discussion.md */,
-				88726B282D90532300CA62BD /* container-discussion.md */,
+				886BB4112D90D2AE004E64B6 /* combined.md */,
+				886BB4102D90D041004E64B6 /* 00-toc-discussion.md */,
+				88726B262D90502400CA62BD /* 07-ops-discussion.md */,
+				88726B292D9055EF00CA62BD /* 10-dev-discussion.md */,
+				88726B2B2D908E0C00CA62BD /* 01-aws-discussion.md */,
+				88726B272D9051C100CA62BD /* 03-logging-discussion.md */,
+				88726B2D2D90926000CA62BD /* 02-workflow-discussion.md */,
+				88726B282D90532300CA62BD /* 08-container-discussion.md */,
+				886BB40E2D90C4DD004E64B6 /* 06-brandregistry-discussion.md */,
+				886BB40F2D90C967004E64B6 /* 05-pipeline-discussion.md */,
 			);
 			path = discussions;
 			sourceTree = "<group>";

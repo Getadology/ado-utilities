@@ -1,4 +1,4 @@
-# Workflow Discussion
+# Workflow  
 ```
                                  ┌─────────────────────┐
                                  │  Frontend (Client)  │
@@ -83,8 +83,7 @@ This section provides a **step-by-step walkthrough** of the architecture, descri
       "active_sessions": 320,
       "avg_response_time_ms": 45
     }
-    ```
-- ✅ **This completes the request instantly (~50-200ms response time).**
+    ``` 
 
 ---
 
@@ -157,7 +156,7 @@ This section provides a **step-by-step walkthrough** of the architecture, descri
   };
   ```
 
-- ✅ The **dashboard updates instantly** without polling.
+-  The **dashboard updates instantly** without polling.
 
 ---
 
@@ -174,3 +173,5 @@ This section provides a **step-by-step walkthrough** of the architecture, descri
 | **6** | Workers send **status updates** to WebSocket server. |
 | **7** | WebSocket server **broadcasts updates** to clients. |
 | **8** | Frontend **receives real-time updates** via WebSockets. |
+
+====
