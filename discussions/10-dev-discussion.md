@@ -1,4 +1,4 @@
-# Development and Testing
+## Development and Testing
 Q: In light of the Adology Architecture what do you envision as an ideal development environment for programmers and architects?
 
 A: An ideal programmer environment for developing these components would blend robust local development tools with cloud-native AWS services. Key aspects include:
@@ -31,8 +31,9 @@ Set up pipelines that automatically test, build, and deploy your application com
 ####	Git-Based Source Control:
 Use Git with repositories hosted on services like AWS CodeCommit or GitHub. This enables collaboration, versioning, and integration with CI/CD pipelines.
 
-## Summary
+### Summary
 
 In this ideal environment, developers work in a cloud-native or containerized IDE that mirrors the AWS production environment as closely as possible. Local tools like Docker, Localstack, and SAM CLI simulate AWS services, while integrated testing and debugging tools streamline asynchronous code development. CI/CD pipelines built on AWS services (CodePipeline, CodeBuild) ensure that your asynchronous ingestion, AI processing, and data management components are reliably built, tested, and deployed with a high degree of automation and observability.
 
 ----
+<!--BREAK-->

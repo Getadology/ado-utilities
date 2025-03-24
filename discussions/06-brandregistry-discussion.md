@@ -1,5 +1,5 @@
 
-# Active Brand Registry 
+## Active Brand Registry 
 
 The singular Active Brand Registry Server  acts as a coordination service for distributed brand-level processing across multiple EC2 instances or containers. This service will manage state for each brand to ensure that:
 	1.	Each brand is only processed once at a time, even when multiple workers consume from the same SQS queue.
@@ -97,3 +97,4 @@ Response:
 	•	High availability or persistence is not required at this time.
  
 ----
+<!--BREAK-->

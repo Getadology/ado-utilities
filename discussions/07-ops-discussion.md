@@ -1,4 +1,4 @@
-# Ops Dashboard
+## Ops Dashboard
 
 Q:I want to build some monitoring screens on top of an AWS infrastructure. This will include looking at Q counts on SQSQ’s looking at error, messages in console, logs and generating alerts for people on their mobile phones when any of this goes astray please make some suggestions for delivering all this information into a dashboard like situation for an operational user. It’s OK if some of this ends up on terminal screens without a gui
 
@@ -9,7 +9,7 @@ A:Great, you’re essentially looking to build a practical, lightweight observab
 
 Here’s a breakdown of how you could structure this using AWS-native services and lightweight tools, keeping the option open for GUI and terminal-based dashboards:
 
-## Core Components to Monitor
+### Core Components to Monitor
 	1.	SQS Queue Lengths & Dead-Letter Queues
 	2.	CloudWatch Logs (from Lambdas, EC2, etc.)
 	3.	CloudWatch Metrics & Alarms
@@ -77,3 +77,4 @@ Alerts	CW Alarm + SNS → Slack/SMS/Firebase	Mobile Notification
 	•	Implement “heartbeat” tracking for critical services and raise alerts if no heartbeat received
 
 ---
+<!--BREAK-->

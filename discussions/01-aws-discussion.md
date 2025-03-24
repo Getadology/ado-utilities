@@ -1,4 +1,4 @@
-# AWS Environment
+## AWS Environment
 This note describes the core AWS components you specified for constructing a medium-scale advertising ingestion and query system, including key management and disaster recovery.
 
 1. Amazon S3
@@ -74,3 +74,4 @@ This note describes the core AWS components you specified for constructing a med
 
 This environment provides a scalable, secure foundation for advertising ingestion, AI-powered enrichment, and efficient querying of both relational and non-relational data.
 ----
+<!--BREAK-->

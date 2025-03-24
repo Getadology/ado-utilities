@@ -1,5 +1,17 @@
-## Table of Contents
+# Adology Background
 
+Adology is a intelligent service that analyzes digital advertising by applying knowledge processing to evaluate content(video, image, and text) as it is ingested into a permanent Adology repository.
+
+At its core, Adology is not just a passive ad-tracking tool. Instead, it functions as an AI-powered intelligence engine that captures:
+
+- The raw reality of ad creatives (metadata, images, videos, and text)
+- The structured interpretation of these creatives (AI-generated labels, scores, and embeddings)
+- The higher-level knowledge extracted from AI insights (brand-wide trends, comparative analysis, and strategic reports)
+
+<!--TOC-->
+
+## Table of Contents
+- [Overview](#overview)
 - [AWS Environment](#aws-environment)
 - [Workflow](#workflow)
 - [Logging and Metrics](#logging-and-metrics)
@@ -9,10 +21,27 @@
 - [Ops Dashboard](#ops-dashboard)
 - [Development and Testing](#development-and-testing)
 
----
+## Overview 
 
-## Overview
-# AWS Environment
+
+
+Adology’s architecture is designed to systematically store, analyze, and generate insights from advertising data. The system must support highly structured AI-driven analysis while also maintaining efficient retrieval of brand, ad, and intelligence reports—all within a cost-effective, scalable database structure.
+
+
+Adology's data architecture supports multiple users within customer accounts, each managing multiple *brandspaces*. Each brandspace focuses on a primary brand, tracking competitor brands and followed brands to define the scope of intelligence gathering. A user can switch brandspaces for one customer organization at any time but requires a unique email and separate login to support multiple organizations.
+
+Adology largely operates as a conventional, Internet-accessible database and content management service built on top of well-known data stores and access methods, including AWS, EC2, S3, SQS, Lambda, Postgres, Mongo, and Python. Its key value lies in intelligent, contextual analysis and notifications for advertising-based videos and imagery stored and maintained in real time. Newly ingested images and videos are archived in S3 and accessed directly via S3 URLs.
+
+The APIs used by client programs (UX or background) support a Contextual Data Model that offers various convenient features and returns filtered, transformed, and AI-enhanced slices of the database. These REST APIs are documented at [https://adology.ai/live/…](https://adology.ai/live/…).
+
+The data stores (S3, Postgres, Mongo) that power the Adology Contextual Data Model are filled by Acquisition Engines, which are EC2 or dynamically launched Lambda functions that pull data from remote sources, including Facebook, SerpApi, and customer-specific databases.
+
+Most of the data, such as brands and advertising assets, is shared by all customers, whereas brandspaces are private to each customer.
+
+Different non-UI components run on either EC2 or Lambda functions and are connected through a series of SQS queues. The SQS queues and Lambdas support parallelization of workflows for maximum concurrency.
+
+<!--BREAK-->
+## AWS Environment
 This note describes the core AWS components you specified for constructing a medium-scale advertising ingestion and query system, including key management and disaster recovery.
 
 1. Amazon S3
@@ -87,7 +116,9 @@ This note describes the core AWS components you specified for constructing a med
 	•	Ensures tested restore procedures align with compliance and SLA requirements.
 
 This environment provides a scalable, secure foundation for advertising ingestion, AI-powered enrichment, and efficient querying of both relational and non-relational data.
-# Workflow  
+----
+<!--BREAK-->
+## Workflow  
 ```
                                  ┌─────────────────────┐
                                  │  Frontend (Client)  │
@@ -262,7 +293,10 @@ This section provides a **step-by-step walkthrough** of the architecture, descri
 | **6** | Workers send **status updates** to WebSocket server. |
 | **7** | WebSocket server **broadcasts updates** to clients. |
 | **8** | Frontend **receives real-time updates** via WebSockets. |
-# Logging and Metrics 
+
+====
+<!--BREAK-->
+## Logging and Metrics 
 
 I have an application running on AWS infrastructure. The application is built largely in Python and is mostly a server plus some background processes. It is used by clients over HTTPS. It also maintains a WebSocket connection with each of the clients. What I want to do is build a logging system, which will comprehensively log all external calls that are made inside the server infrastructure to external resources such as the OpenAI servers, the Amazon servers, which are used for computing embeddings, and anybody else's server in a pseudo-synchronous manner, where it looks like we're calling synchronously, but it's actually happening inside a thread or an async I.O. Anyway, I want all of this to be logged and I want every error message in the system to be categorized as whether it's just informational warning or such, and we need all the print statements in the software to be changed into console logging statements. I would like to talk to you about doing this systematically across the code base, which at this point is less than 20,000 lines of code. I'd like to get these first principles installed here right now before we go much further. Let me have your thoughts about this.
 
@@ -359,74 +393,9 @@ Once your loggers are standardized:
 
 If your server handles concurrent sessions (WebSockets especially), consider integrating something like contextvars or structlog to tag logs with session/user IDs.
 
-Would you like me to help you write:
-  •  A base logger.py module to import across files?
-  •  A scanning script to find and replace print()?
-  •  A decorator/context manager that works for sync and async APIs?
-  •  A sample logging.yaml config for more complex setups?
-
-Let me know what direction you’d like to go in next.
-# Containers and Concurrency
-
-Q: I want to talk to you about setting up a container-driven environment at AWS to run basically Python code inside the containers. I want to talk about how many containers can run concurrently on a single EC2 machine. I understand this will depend upon many factors. I want to talk about concurrency inside the container and whether we should use ThreadWorkers or AsyncIO for various situations. I do understand that a normal synchronous API call will block an AsyncIO task, which will actually block the whole process. Whereas a ThreadWorker, if it's executed under a ThreadWorker, it will not block the process and in fact will take advantage of an additional CPU. So I'd like to have your thoughts on that. And then finally, I'd like to have your thoughts on setting up the whole AWS environment so that when a new user comes along or a new team of users wants to participate in our development environment, we can easily set up another instance of everything for them, including our MongoDB and other connections to other servers at AWS. Please let me have your thoughts.
-
-A:Great — you’re tackling some very relevant architecture and scalability questions. Let’s break this down into the key areas you brought up:
-
-### How Many Containers Can Run Concurrently on a Single EC2 Instance?
-
-You’re right — this depends on many factors:
-  •  Instance Type: The number of vCPUs and memory your EC2 instance has will directly limit how many containers you can run efficiently. For example, a c6i.4xlarge gives you 16 vCPUs and 32 GiB RAM.
-  •  Container Workload: A lightweight, mostly I/O-bound service can run many instances per machine. A CPU- or memory-heavy task will reduce that count.
-  •  Orchestration: If you’re using ECS or EKS, task/container placement and resource limits (CPU/mem) per task help you get predictable density.
-
-Tips:
-  •  Set explicit cpu and memory limits per container in your task definition (ECS) or pod spec (EKS).
-  •  Use CloudWatch metrics and CPU throttling indicators to monitor when you’re overloading the instance.
-
-### Concurrency Inside the Container: asyncio vs Thread Workers
-
-Your mental model is spot-on:
-
-Use asyncio when:
-  •  You’re dealing with I/O-bound operations (like HTTP APIs, DB queries, etc.)
-  •  You can use non-blocking libraries end-to-end (e.g., aiohttp, motor for MongoDB).
-  •  You want high task concurrency with a minimal thread/process overhead.
-
-Use ThreadPool/Worker threads when:
-  •  You need to run blocking code (e.g., legacy sync HTTP clients, database libraries).
-  •  You’re mixing async and sync code and can’t refactor everything.
-  •  You want to utilize multiple cores (though Python’s GIL limits CPU-bound threading, it works well for I/O).
-
-Rule of thumb:
-  •  Use asyncio for orchestrating tasks at scale.
-  •  Offload blocking tasks (like sync API calls or file access) to a ThreadPoolExecutor.
-
-This hybrid approach is very common in modern Python backends.
-
-### Scaling Dev Environments for New Teams on AWS
-
-This is a great use case for Infrastructure as Code (IaC) + container orchestration:
-
-Suggested setup:
-  •  Terraform or AWS CDK: Define your entire infrastructure (EC2, ECS tasks, security groups, MongoDB, networking) as code.
-  •  ECS or EKS: For container orchestration, auto-scaling, and environment isolation.
-  •  MongoDB Atlas or ECS-deployed MongoDB: For per-team DB setups. Atlas makes replication and user permissioning easy.
-  •  Parameter Store or Secrets Manager: Store per-environment configs and secrets.
-  •  VPC/Subnets: Optionally create isolated networks for each team if needed.
-  •  Automation: Wrap your provisioning in a simple CLI or web-based control panel so internal devs can request a new environment.
-
-Each new environment becomes a parameterized stack: team_id = devA, team_id = devB, and your IaC spins up containers, databases, credentials, and optionally DNS entries.
-
-## Summary
-
-Area  Recommendation
-Container density  Tune based on instance type and per-container CPU/mem limits
-Concurrency  Use asyncio for orchestrating, and offload blocking to threads
-AWS setup  Use Terraform/CDK, ECS/EKS, and MongoDB Atlas for automation and modular, isolated environments
-
-I’d be happy to help mock up an architecture diagram, starter Terraform/CDK stack, or a Python example that mixes asyncio with thread workers. Let me know what you’d like to go deep on next.
-
-# 3-Phase Pipeline
+----
+<!--BREAK-->
+## 3-Phase Pipeline
 
 Below is a text-based ASCII-style diagram of the architecture, which you can copy into a Markdown file. It shows the flow from the frontend making an API or WebSocket request, through the AWS services, and finally back via real-time updates.
 ```
@@ -540,10 +509,11 @@ Below is a text-based ASCII-style diagram of the architecture, which you can cop
    - When all URLs for a brand are done.
     - Once the last one is processed → trigger commit inline.
 
+ ----
  
- 
+<!--BREAK-->
 
-# Active Brand Registry 
+## Active Brand Registry 
 
 The singular Active Brand Registry Server  acts as a coordination service for distributed brand-level processing across multiple EC2 instances or containers. This service will manage state for each brand to ensure that:
 	1.	Each brand is only processed once at a time, even when multiple workers consume from the same SQS queue.
@@ -640,7 +610,9 @@ Response:
 	•	It should use internal locking to prevent race conditions across async requests.
 	•	High availability or persistence is not required at this time.
  
-# Ops Dashboard
+----
+<!--BREAK-->
+## Ops Dashboard
 
 Q:I want to build some monitoring screens on top of an AWS infrastructure. This will include looking at Q counts on SQSQ’s looking at error, messages in console, logs and generating alerts for people on their mobile phones when any of this goes astray please make some suggestions for delivering all this information into a dashboard like situation for an operational user. It’s OK if some of this ends up on terminal screens without a gui
 
@@ -651,7 +623,7 @@ A:Great, you’re essentially looking to build a practical, lightweight observab
 
 Here’s a breakdown of how you could structure this using AWS-native services and lightweight tools, keeping the option open for GUI and terminal-based dashboards:
 
-## Core Components to Monitor
+### Core Components to Monitor
 	1.	SQS Queue Lengths & Dead-Letter Queues
 	2.	CloudWatch Logs (from Lambdas, EC2, etc.)
 	3.	CloudWatch Metrics & Alarms
@@ -718,8 +690,69 @@ Alerts	CW Alarm + SNS → Slack/SMS/Firebase	Mobile Notification
 	•	Use AWS Lambda to regularly push state summaries to a central place (e.g., DynamoDB + terminal polling, or a Redis pub-sub feed)
 	•	Implement “heartbeat” tracking for critical services and raise alerts if no heartbeat received
 
-Would you prefer to go more terminal-focused, or are you looking to eventually have a proper web-based dashboard too? I can mock up a terminal UI or web dashboard sample for you if you like.
-# Development and Testing
+---
+<!--BREAK-->
+## Containers and Concurrency
+
+Q: I want to talk to you about setting up a container-driven environment at AWS to run basically Python code inside the containers. I want to talk about how many containers can run concurrently on a single EC2 machine. I understand this will depend upon many factors. I want to talk about concurrency inside the container and whether we should use ThreadWorkers or AsyncIO for various situations. I do understand that a normal synchronous API call will block an AsyncIO task, which will actually block the whole process. Whereas a ThreadWorker, if it's executed under a ThreadWorker, it will not block the process and in fact will take advantage of an additional CPU. So I'd like to have your thoughts on that. And then finally, I'd like to have your thoughts on setting up the whole AWS environment so that when a new user comes along or a new team of users wants to participate in our development environment, we can easily set up another instance of everything for them, including our MongoDB and other connections to other servers at AWS. Please let me have your thoughts.
+
+A:Great — you’re tackling some very relevant architecture and scalability questions. Let’s break this down into the key areas you brought up:
+
+### How Many Containers Can Run Concurrently on a Single EC2 Instance?
+
+You’re right — this depends on many factors:
+  •  Instance Type: The number of vCPUs and memory your EC2 instance has will directly limit how many containers you can run efficiently. For example, a c6i.4xlarge gives you 16 vCPUs and 32 GiB RAM.
+  •  Container Workload: A lightweight, mostly I/O-bound service can run many instances per machine. A CPU- or memory-heavy task will reduce that count.
+  •  Orchestration: If you’re using ECS or EKS, task/container placement and resource limits (CPU/mem) per task help you get predictable density.
+
+Tips:
+  •  Set explicit cpu and memory limits per container in your task definition (ECS) or pod spec (EKS).
+  •  Use CloudWatch metrics and CPU throttling indicators to monitor when you’re overloading the instance.
+
+### Concurrency Inside the Container: asyncio vs Thread Workers
+
+Your mental model is spot-on:
+
+Use asyncio when:
+  •  You’re dealing with I/O-bound operations (like HTTP APIs, DB queries, etc.)
+  •  You can use non-blocking libraries end-to-end (e.g., aiohttp, motor for MongoDB).
+  •  You want high task concurrency with a minimal thread/process overhead.
+
+Use ThreadPool/Worker threads when:
+  •  You need to run blocking code (e.g., legacy sync HTTP clients, database libraries).
+  •  You’re mixing async and sync code and can’t refactor everything.
+  •  You want to utilize multiple cores (though Python’s GIL limits CPU-bound threading, it works well for I/O).
+
+Rule of thumb:
+  •  Use asyncio for orchestrating tasks at scale.
+  •  Offload blocking tasks (like sync API calls or file access) to a ThreadPoolExecutor.
+
+This hybrid approach is very common in modern Python backends.
+
+### Scaling Dev Environments for New Teams on AWS
+
+This is a great use case for Infrastructure as Code (IaC) + container orchestration:
+
+Suggested setup:
+  •  Terraform or AWS CDK: Define your entire infrastructure (EC2, ECS tasks, security groups, MongoDB, networking) as code.
+  •  ECS or EKS: For container orchestration, auto-scaling, and environment isolation.
+  •  MongoDB Atlas or ECS-deployed MongoDB: For per-team DB setups. Atlas makes replication and user permissioning easy.
+  •  Parameter Store or Secrets Manager: Store per-environment configs and secrets.
+  •  VPC/Subnets: Optionally create isolated networks for each team if needed.
+  •  Automation: Wrap your provisioning in a simple CLI or web-based control panel so internal devs can request a new environment.
+
+Each new environment becomes a parameterized stack: team_id = devA, team_id = devB, and your IaC spins up containers, databases, credentials, and optionally DNS entries.
+
+### Summary
+
+Area  Recommendation
+Container density  Tune based on instance type and per-container CPU/mem limits
+Concurrency  Use asyncio for orchestrating, and offload blocking to threads
+AWS setup  Use Terraform/CDK, ECS/EKS, and MongoDB Atlas for automation and modular, isolated environments
+
+----
+<!--BREAK-->
+## Development and Testing
 Q: In light of the Adology Architecture what do you envision as an ideal development environment for programmers and architects?
 
 A: An ideal programmer environment for developing these components would blend robust local development tools with cloud-native AWS services. Key aspects include:
@@ -752,8 +785,9 @@ Set up pipelines that automatically test, build, and deploy your application com
 ####	Git-Based Source Control:
 Use Git with repositories hosted on services like AWS CodeCommit or GitHub. This enables collaboration, versioning, and integration with CI/CD pipelines.
 
-## Summary
+### Summary
 
 In this ideal environment, developers work in a cloud-native or containerized IDE that mirrors the AWS production environment as closely as possible. Local tools like Docker, Localstack, and SAM CLI simulate AWS services, while integrated testing and debugging tools streamline asynchronous code development. CI/CD pipelines built on AWS services (CodePipeline, CodeBuild) ensure that your asynchronous ingestion, AI processing, and data management components are reliably built, tested, and deployed with a high degree of automation and observability.
 
-This comprehensive setup not only accelerates development but also mitigates issues—such as API rate limits, partial failures, and concurrency challenges—by ensuring that the environment used for development closely reflects the complexities of the production system.
+----
+<!--BREAK-->

@@ -10,7 +10,6 @@
 		886BB40E2D90C4DD004E64B6 /* 06-brandregistry-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "06-brandregistry-discussion.md"; sourceTree = "<group>"; };
 		886BB40F2D90C967004E64B6 /* 05-pipeline-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "05-pipeline-discussion.md"; sourceTree = "<group>"; };
 		886BB4102D90D041004E64B6 /* 00-toc-discussion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "00-toc-discussion.md"; sourceTree = "<group>"; };
-		886BB4112D90D2AE004E64B6 /* combined.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = combined.md; sourceTree = "<group>"; };
 		88726B082D734EF900CA62BD /* dailies.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = dailies.md; sourceTree = "<group>"; };
 		88726B092D734EF900CA62BD /* jsonSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jsonSample.json; sourceTree = "<group>"; };
 		88726B0A2D734EF900CA62BD /* dyanmicpage.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = dyanmicpage.html; sourceTree = "<group>"; };
@@ -96,7 +95,6 @@
 		88726B2C2D908F2500CA62BD /* discussions */ = {
 			isa = PBXGroup;
 			children = (
-				886BB4112D90D2AE004E64B6 /* combined.md */,
 				886BB4102D90D041004E64B6 /* 00-toc-discussion.md */,
 				88726B262D90502400CA62BD /* 07-ops-discussion.md */,
 				88726B292D9055EF00CA62BD /* 10-dev-discussion.md */,

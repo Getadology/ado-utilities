@@ -1,4 +1,4 @@
-# Containers and Concurrency
+## Containers and Concurrency
 
 Q: I want to talk to you about setting up a container-driven environment at AWS to run basically Python code inside the containers. I want to talk about how many containers can run concurrently on a single EC2 machine. I understand this will depend upon many factors. I want to talk about concurrency inside the container and whether we should use ThreadWorkers or AsyncIO for various situations. I do understand that a normal synchronous API call will block an AsyncIO task, which will actually block the whole process. Whereas a ThreadWorker, if it's executed under a ThreadWorker, it will not block the process and in fact will take advantage of an additional CPU. So I'd like to have your thoughts on that. And then finally, I'd like to have your thoughts on setting up the whole AWS environment so that when a new user comes along or a new team of users wants to participate in our development environment, we can easily set up another instance of everything for them, including our MongoDB and other connections to other servers at AWS. Please let me have your thoughts.
 
@@ -49,7 +49,7 @@ Suggested setup:
 
 Each new environment becomes a parameterized stack: team_id = devA, team_id = devB, and your IaC spins up containers, databases, credentials, and optionally DNS entries.
 
-## Summary
+### Summary
 
 Area  Recommendation
 Container density  Tune based on instance type and per-container CPU/mem limits
@@ -57,3 +57,4 @@ Concurrency  Use asyncio for orchestrating, and offload blocking to threads
 AWS setup  Use Terraform/CDK, ECS/EKS, and MongoDB Atlas for automation and modular, isolated environments
 
 ----
+<!--BREAK-->

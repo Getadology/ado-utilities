@@ -1,4 +1,4 @@
-# Workflow  
+## Workflow  
 ```
                                  ┌─────────────────────┐
                                  │  Frontend (Client)  │
@@ -175,3 +175,4 @@ This section provides a **step-by-step walkthrough** of the architecture, descri
 | **8** | Frontend **receives real-time updates** via WebSockets. |
 
 ====
+<!--BREAK-->

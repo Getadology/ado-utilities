@@ -1,5 +1,4 @@
-
-# 3-Phase Pipeline
+## 3-Phase Pipeline
 
 Below is a text-based ASCII-style diagram of the architecture, which you can copy into a Markdown file. It shows the flow from the frontend making an API or WebSocket request, through the AWS services, and finally back via real-time updates.
 ```
@@ -115,3 +114,4 @@ Below is a text-based ASCII-style diagram of the architecture, which you can cop
 
  ----
  
+<!--BREAK-->
